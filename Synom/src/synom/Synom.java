@@ -6,9 +6,10 @@ import java.lang.management.*;
 public class Synom {
 
     public static GUI gui = new GUI();
-    public static OperatingSystemMXBean mbean = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+    public static OperatingSystemMXBean mbean = (com.sun.management.OperatingSystemMXBean) 
+            ManagementFactory.getOperatingSystemMXBean();
     public static double memorySize;
-    public static double[] cpuLoad = new double[100];
+    public static double[] cpuLoad = new double[1];
     public static Double cpuLoadText;
     public static Double ramText;
 
@@ -16,8 +17,7 @@ public class Synom {
 
         gui.setVisible(true);
         int i = 0;
-        memorySize = mbean.getFreePhysicalMemorySize();
-        ramText = memorySize/1000000;
+
         while (true) {
             cpuLoad[i] = mbean.getSystemCpuLoad();
 
@@ -31,6 +31,8 @@ public class Synom {
                 e.printStackTrace();
             }
             cpuLoadText = cpuLoad[0] * 100;
+            memorySize = mbean.getFreePhysicalMemorySize();
+            ramText = memorySize / 1000000;
         }
     }
 

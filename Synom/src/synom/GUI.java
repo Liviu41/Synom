@@ -75,8 +75,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cpuLoad.setText("CPU = " + Synom.cpuLoadText.toString() + "%");
-        ram.setText("RAM = " + Synom.ramText.toString() + " GB");
+        cpuLoad.setText("CPU = " + String.format("%.2f", Synom.cpuLoadText) + "%");
+        ram.setText("RAM = " + String.format("%.2f", Synom.ramText) + " GB");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
