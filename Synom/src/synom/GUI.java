@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package synom;
 
-/**
- *
- * @author Liviu
- */
 public class GUI extends javax.swing.JFrame {
 
     /**
@@ -28,56 +19,46 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         cpuLoad = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         ram = new javax.swing.JLabel();
+        totalRAM = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cpuLoad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cpuLoad.setText("CPU");
 
-        jButton1.setText("Show Resources");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         ram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ram.setText("RAM");
+
+        totalRAM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalRAM.setText("totalRAM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cpuLoad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(141, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(totalRAM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ram, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpuLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
                 .addComponent(cpuLoad)
                 .addGap(18, 18, 18)
                 .addComponent(ram)
-                .addGap(44, 44, 44)
-                .addComponent(jButton1)
-                .addGap(69, 69, 69))
+                .addGap(18, 18, 18)
+                .addComponent(totalRAM)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        cpuLoad.setText("CPU = " + String.format("%.2f", Synom.cpuLoadText) + "%");
-        ram.setText("RAM = " + String.format("%.2f", Synom.ramText) + " GB");
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,8 +96,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cpuLoad;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel ram;
+    public javax.swing.JLabel cpuLoad;
+    public javax.swing.JLabel ram;
+    public javax.swing.JLabel totalRAM;
     // End of variables declaration//GEN-END:variables
 }
