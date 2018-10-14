@@ -5,28 +5,33 @@ import java.lang.management.*;
 
 public class Synom {
 
-    public static void main(String[] args) {
-        System.out.println("Made it!");
+    public static GUI gui = new GUI();
+    public static OperatingSystemMXBean mbean = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+    public static double memorySize;
+    public static double[] cpuLoad = new double[100];
+    public static Double cpuLoadText;
+    public static Double ramText;
 
-        OperatingSystemMXBean mbean = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        double load;
-        for (int i = 0; i < 10; i++) {
-            load = mbean.getSystemCpuLoad();
-            System.out.println(load);
-            if ((load < 0.0 || load > 1.0) && load != -1.0) {
-                throw new RuntimeException("getSystemCpuLoad() returns " + load
+    public static void main(String[] args) {
+
+        gui.setVisible(true);
+        int i = 0;
+        memorySize = mbean.getFreePhysicalMemorySize();
+        ramText = memorySize/1000000;
+        while (true) {
+            cpuLoad[i] = mbean.getSystemCpuLoad();
+
+            if ((cpuLoad[i] < 0.0 || cpuLoad[i] > 1.0) && cpuLoad[i] != -1.0) {
+                throw new RuntimeException("getSystemCpuLoad() returns " + cpuLoad[i]
                         + " which is not in the [0.0,1.0] interval");
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            cpuLoadText = cpuLoad[0] * 100;
         }
-        long memorySize = ((com.sun.management.OperatingSystemMXBean) ManagementFactory
-        .getOperatingSystemMXBean()).getFreePhysicalMemorySize();
-        Object a = memorySize;
-        System.out.println(Long.parseLong(a.toString())/1000000-200);
     }
 
 }
