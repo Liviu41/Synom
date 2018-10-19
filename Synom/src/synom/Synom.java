@@ -1,7 +1,10 @@
 package synom;
 
 import com.sun.management.OperatingSystemMXBean;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.management.*;
+import javax.swing.Action;
 import org.jfree.ui.RefineryUtilities;
 
 public class Synom {
@@ -17,7 +20,12 @@ public class Synom {
 
         gui.setVisible(true);
 
-        for(int i=0;i<30;++i){
+        final org.jfree.chart.demo.DynamicDataDemo demo = new org.jfree.chart.demo.DynamicDataDemo("Dynamic Data Demo");
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
+        demo.button.setVisible(false);
+        for (int i = 0; i < 100; ++i) {
             cpuLoad[i] = mbean.getSystemCpuLoad();
 
             if ((cpuLoad[i] < 0.0 || cpuLoad[i] > 1.0) && cpuLoad[i] != -1.0) {
@@ -25,7 +33,7 @@ public class Synom {
                         + " which is not in the [0.0,1.0] interval");
             }
             try {
-                Thread.sleep(300);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -38,17 +46,13 @@ public class Synom {
             gui.cpuLoad.setText("CPU = " + String.format("%.2f", Synom.cpuLoadText) + "%");
             gui.ram.setText("RAM = " + String.format("%.2f", Synom.ramText) + " GB");
             gui.totalRAM.setText("Total RAM = " + String.format("%.2f", Synom.totalRAMText) + " GB");
+            demo.button.doClick();
         }
-        
+
         Chart chart = new Chart("CPU usage", "CPU usage");
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
         chart.setVisible(true);
-        
-        final org.jfree.chart.demo.DynamicDataDemo demo = new org.jfree.chart.demo.DynamicDataDemo("Dynamic Data Demo");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
     }
 
 }
