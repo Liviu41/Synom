@@ -15,16 +15,12 @@ public class Synom {
     ;
     public static double[] cpuLoad = new double[100];
     public static Double cpuLoadText, totalRAMText, ramText;
+    public static final org.jfree.chart.demo.DynamicDataDemo demo = new org.jfree.chart.demo.DynamicDataDemo("Dynamic Data Demo");
 
     public static void main(String[] args) {
 
         gui.setVisible(true);
-
-        final org.jfree.chart.demo.DynamicDataDemo demo = new org.jfree.chart.demo.DynamicDataDemo("Dynamic Data Demo");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
-        demo.button.setVisible(false);
+        
         for (int i = 0; i < 100; ++i) {
             cpuLoad[i] = mbean.getSystemCpuLoad();
 
@@ -33,7 +29,7 @@ public class Synom {
                         + " which is not in the [0.0,1.0] interval");
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
