@@ -21,6 +21,7 @@ public class Synom {
 
     public static void main(String[] args) {
 
+        gui.setLocation(200, 200);
         gui.setVisible(true);
         
         for (int i = 0; i < 100; ++i) {

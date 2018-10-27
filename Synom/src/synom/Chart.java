@@ -84,5 +84,11 @@ public class Chart extends ApplicationFrame implements ActionListener {
     }
 
     public void windowClosing(WindowEvent event) {
+        if (this.type.equals("cpu")) {
+        Synom.gui.cpuGraph.setEnabled(true);
+        }
+        else if (this.type.equals("ram")) {
+        Synom.gui.ramGraph.setEnabled(true);
+        }
     }
 }
