@@ -1,13 +1,14 @@
-package org.jfree.chart.demo;
+/*
+    Deprecated method, use synom.Chart instead!!
+*/
+
+package synom;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -18,7 +19,6 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
 
 public class DynamicDataDemo extends ApplicationFrame implements ActionListener {
 
@@ -74,7 +74,7 @@ public class DynamicDataDemo extends ApplicationFrame implements ActionListener 
 
     public void actionPerformed(final ActionEvent e) {
             this.lastValue = synom.Synom.cpuLoadText;
-            System.out.println(this.lastValue);
+            //System.out.println(this.lastValue);
             final Millisecond now = new Millisecond();
             this.series.add(new Millisecond(), this.lastValue);
     }

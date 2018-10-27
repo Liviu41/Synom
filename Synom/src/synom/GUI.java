@@ -1,13 +1,14 @@
+/*
+
+*/
+
 package synom;
 
 import org.jfree.ui.RefineryUtilities;
-import static synom.Synom.demo;
+
 
 public class GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUI
-     */
     public GUI() {
         initComponents();
     }
@@ -26,6 +27,7 @@ public class GUI extends javax.swing.JFrame {
         ram = new javax.swing.JLabel();
         totalRAM = new javax.swing.JLabel();
         cpuGraph = new javax.swing.JButton();
+        ramGraph = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +55,15 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        ramGraph.setBackground(new java.awt.Color(102, 102, 102));
+        ramGraph.setForeground(new java.awt.Color(0, 255, 51));
+        ramGraph.setText("RAM Graph");
+        ramGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ramGraphActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -67,7 +78,9 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(totalRAM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(cpuGraph)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cpuGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ramGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -81,7 +94,9 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(totalRAM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cpuGraph)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(ramGraph)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,49 +107,30 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cpuGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpuGraphActionPerformed
-        // TODO add your handling code here:
-        Synom.demo.setVisible(true);
-        Synom.demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        Synom.demo.setVisible(true);
-        Synom.demo.button.setVisible(false);
+        // TODO add your handling code here:        
+        Synom.chartCPU.setVisible(true);
+        Synom.chartCPU.pack();
+        RefineryUtilities.centerFrameOnScreen(Synom.chartCPU);
+        Synom.chartCPU.setVisible(true);
+        Synom.chartCPU.button.setVisible(false);
     }//GEN-LAST:event_cpuGraphActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void ramGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramGraphActionPerformed
+        Synom.chartRAM.setVisible(true);
+        Synom.chartRAM.pack();
+        RefineryUtilities.centerFrameOnScreen(Synom.chartRAM);
+        Synom.chartRAM.setVisible(true);
+        Synom.chartRAM.button.setVisible(false);
+    }//GEN-LAST:event_ramGraphActionPerformed
 
-        /* Create and display the form */
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUI().setVisible(true);
@@ -147,6 +143,7 @@ public class GUI extends javax.swing.JFrame {
     public javax.swing.JLabel cpuLoad;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel ram;
+    private javax.swing.JButton ramGraph;
     public javax.swing.JLabel totalRAM;
     // End of variables declaration//GEN-END:variables
 }
