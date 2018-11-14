@@ -5,7 +5,12 @@
 package synom;
 
 import com.sun.management.OperatingSystemMXBean;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.management.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Synom {
@@ -19,12 +24,26 @@ public class Synom {
     public static final Chart chartCPU = new Chart("CPU Chart", "cpu");
     public static final Chart chartRAM = new Chart("RAM Chart", "ram");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
         gui.setLocation(200, 200);
         gui.setVisible(true);
+
+        String operatingSystem = System.getProperty("os.name");
+        gui.osLabel.setText("Current operating system is " + operatingSystem);
+        operatingSystem = operatingSystem.subSequence(0, 5).toString();
+        System.out.println("Current operating system: " + operatingSystem);
+
+        PrintWriter writer;
+        if (operatingSystem.equals("Windo")) {
+            writer = new PrintWriter("C:\\Users\\Liviu\\Desktop\\Logs.txt", "UTF-8");
+        } else {
+            writer = new PrintWriter("~/Desktop/Logs.txt");
+        }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 3; ++i) {
             cpuLoad[i] = mbean.getSystemCpuLoad();
 
             if ((cpuLoad[i] < 0.0 || cpuLoad[i] > 1.0) && cpuLoad[i] != -1.0) {
@@ -47,7 +66,15 @@ public class Synom {
             gui.totalRAM.setText("Total RAM = " + String.format("%.2f", Synom.totalRAMText) + " MB");
             chartCPU.button.doClick();
             chartRAM.button.doClick();
+
+            LocalDateTime now = LocalDateTime.now();
+
+            writer.println("[" + dtf.format(now) + "] CPU Load = " + String.format("%.2f", Synom.cpuLoadText) + "%");
+            writer.println("[" + dtf.format(now) + "] RAM Load = " + String.format("%.2f", Synom.ramText) + "MB");
+            writer.println();
         }
+        writer.close();
+        System.exit(0);
     }
 
 }
