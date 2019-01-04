@@ -43,7 +43,7 @@ public class Synom {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 10; ++i) {
             cpuLoad[i] = mbean.getSystemCpuLoad();
 
             if ((cpuLoad[i] < 0.0 || cpuLoad[i] > 1.0) && cpuLoad[i] != -1.0) {
@@ -69,9 +69,8 @@ public class Synom {
 
             LocalDateTime now = LocalDateTime.now();
 
-            writer.println("[" + dtf.format(now) + "] CPU Load = " + String.format("%.2f", Synom.cpuLoadText) + "%");
-            writer.println("[" + dtf.format(now) + "] RAM Load = " + String.format("%.2f", Synom.ramText) + "MB");
-            writer.println();
+            writer.println("[" + dtf.format(now) + "]\t CPU_Load = " + String.format("%.2f", Synom.cpuLoadText) + "%\t"
+                    + " RAM_Load = " + String.format("%.2f", Synom.ramText) + "MB");
         }
         writer.close();
         System.exit(0);
