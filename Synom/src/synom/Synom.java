@@ -43,7 +43,7 @@ public class Synom {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             cpuLoad[i] = mbean.getSystemCpuLoad();
 
             if ((cpuLoad[i] < 0.0 || cpuLoad[i] > 1.0) && cpuLoad[i] != -1.0) {

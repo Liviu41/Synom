@@ -99,6 +99,19 @@
             table, th, td {
                 border: 1px solid black;
             }
+            
+            .button {
+  background-color: #4CAF50;
+  border: solid;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px 67px;
+  cursor: pointer;
+}
         </style>		
 
     </head>
@@ -123,20 +136,23 @@
                     <tr>  
                         <th><%=request.getAttribute("memory")%></th>
                     </tr>  
-
                 </table>
                 </p>
-
             </div>
+
+        <form method="POST" action="monitorizare">
+        <input type="submit" value="Press for Logs" name="add" class="button"/>
+        </form>
+
         </main>
 
         <nav id="nav">
             <div class="innertube">
                 <h2><span>Proiect 3</span></h2>
-                        Liviu Rujan<br>
-                        Grupa 443A<br>
-                        Profesor coordonator S.L. Dr. Ing. C. Stoica
-	
+                Liviu Rujan<br>
+                Grupa 443A<br>
+                Profesor coordonator S.L. Dr. Ing. C. Stoica
+
             </div>
         </nav>	
 
