@@ -4,7 +4,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import rmi_interface.RMIInterface;
+import monitor.Monitor;
 
 public class RMI_Server implements RMIInterface {
 
@@ -18,6 +21,17 @@ public class RMI_Server implements RMIInterface {
 //        }
     @Override
     public void sendMessage(String s) throws RemoteException {
+//        Monitor m = new Monitor();
+//        String d[] = null;
+//        try {
+//            d = m.monitor();
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(RMI_Server.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        System.out.println("Date = " + d[0]);
+//        System.out.println("CPU Usage = " + d[1]);
+//        System.out.println("RAM Usage = " + d[2]);
+//        System.out.println("Total RAM = " + d[3]);
         System.out.println(s);
     }
 
