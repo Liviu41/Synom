@@ -42,7 +42,7 @@ public class Monitor {
     public static void main(String[] args) throws InterruptedException {
         Monitor a = new Monitor();
         String[] d = a.monitor();
-        System.out.println("CPU = " + d[0] + "%");
+        System.out.println("CPU = " + d[3] + "%");
     }
 
 }
