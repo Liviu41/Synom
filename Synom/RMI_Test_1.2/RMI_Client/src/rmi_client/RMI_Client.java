@@ -4,7 +4,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import rmi_interface.RMIInterface;
+import monitor.Monitor;
 
 public class RMI_Client {
 
@@ -21,7 +24,7 @@ public class RMI_Client {
         RMIInterface rmi = null;
 
         try {
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
+            Registry registry = LocateRegistry.getRegistry("192.168.1.167", 1099);
             rmi = (RMIInterface) registry.lookup("server");
             System.out.println("Connected to Server");
         } catch (Exception e) {
@@ -29,10 +32,14 @@ public class RMI_Client {
         }
         if (rmi != null) {
             try {
-                rmi.sendMessage(text);
+                Monitor m = new Monitor();
+                String []s = m.monitor();
+                rmi.sendMessage(s[3]);
                 System.out.println(rmi.getMessage(text));
             } catch (RemoteException e) {
                 e.printStackTrace();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(RMI_Client.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("Finished");
         }
