@@ -7,5 +7,5 @@ public interface RMI_InterfaceModule extends Remote {
 
     public String getMessage(String Text) throws RemoteException;
 
-    public void sendMessage(String text) throws RemoteException;
+    public void sendMessage(String[] text) throws RemoteException;
 }

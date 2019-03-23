@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class RMI_Methods implements RMI_InterfaceModule {
 
-    public static String receivedMessage;
+    public static String[] receivedMessage;
 
     @Override
     public String getMessage(String Text) throws RemoteException {
@@ -20,7 +20,7 @@ public class RMI_Methods implements RMI_InterfaceModule {
     }
 
     @Override
-    public void sendMessage(String text) throws RemoteException {
+    public void sendMessage(String[] text) throws RemoteException {
 
         /* Local DB -------------------------------------------------------------------------------------------------------------
         FileWriter writer = null;
@@ -53,16 +53,12 @@ public class RMI_Methods implements RMI_InterfaceModule {
         String user = "root";
         String pass = "fenderice9";
 
-        String var1 = text.substring(42, 43);
-        String var2 = text.substring(60, 64);
-        String var3 = text.substring(96, 100);
-
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
             myStmt = myConn.createStatement();
             myStmt.executeUpdate("INSERT INTO `vault`.`resources` "
-                    + "(`cpu_usage`, `ram_usage`, `total_ram`) VALUES ('" + var1
-                    + "', '" + var2 + "', '" + var3 + "');");
+                    + "(`os_type`, `cpu_usage`, `ram_usage`) "
+                    + "VALUES ('" + text[1] + "', '" + text[2] + "', '" + text[3] + "');");
         } catch (Exception exc) {
             exc.printStackTrace();
         } finally {
