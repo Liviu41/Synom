@@ -41,10 +41,15 @@ public class Monitor {
 
         LocalDateTime now = LocalDateTime.now();
 
-        // Implementare Windows
-        File file = new File("c:");
+        File file = null;
+        if (operatingSystem.equals("Windows10")) {
+            file = new File("c:");
+        } else {
+            file = new File("/home");
+        }
         freeStorage = file.getFreeSpace();
         totalStorage = file.getTotalSpace();
+
 
         freeStorageText = freeStorage / 1024 / 1024;
         totalStorageText = totalStorage / 1024 / 1024;

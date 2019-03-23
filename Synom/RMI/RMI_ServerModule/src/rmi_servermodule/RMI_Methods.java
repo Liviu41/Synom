@@ -56,10 +56,18 @@ public class RMI_Methods implements RMI_InterfaceModule {
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
             myStmt = myConn.createStatement();
-            myStmt.executeUpdate("INSERT INTO `vault`.`resources` "
-                    + "(`time`, `os_type`, `cpu_usage`, `ram_usage`, `total_ram`, `storage_total`, `storage_free`, `ip`) "
-                    + "VALUES ('" + text[0] + "', '" + text[1] + "', '" + text[2] + "', '" + text[3]
-                    + "', '" + text[4] + "', '" + text[5] + "', '" + text[6] + "', '" + text[7] + "');");
+
+            if (text[1].equals("Linux")) {
+                myStmt.executeUpdate("INSERT INTO `vault`.`resources_lightfax` "
+                        + "(`time`, `os_type`, `cpu_usage`, `ram_usage`, `ram_total`, `storage_total`, `storage_free`, `ip`) "
+                        + "VALUES ('" + text[0] + "', '" + text[1] + "', '" + text[2] + "', '" + text[3]
+                        + "', '" + text[4] + "', '" + text[5] + "', '" + text[6] + "', '" + text[7] + "');");
+            } else {
+                myStmt.executeUpdate("INSERT INTO `vault`.`resources_shadowfax` "
+                        + "(`time`, `os_type`, `cpu_usage`, `ram_usage`, `ram_total`, `storage_total`, `storage_free`, `ip`) "
+                        + "VALUES ('" + text[0] + "', '" + text[1] + "', '" + text[2] + "', '" + text[3]
+                        + "', '" + text[4] + "', '" + text[5] + "', '" + text[6] + "', '" + text[7] + "');");
+            }
         } catch (Exception exc) {
             exc.printStackTrace();
         } finally {
