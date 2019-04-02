@@ -57,12 +57,12 @@ public class RMI_Methods implements RMI_InterfaceModule {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
             myStmt = myConn.createStatement();
 
-            if (text[7].equals("192.168.1.167")) {
+            if (text[7].equals("127.0.1.1")) {
                 myStmt.executeUpdate("INSERT INTO `vault`.`resources_lightfax` "
                         + "(`time`, `os_type`, `cpu_usage`, `ram_usage`, `ram_total`, `storage_total`, `storage_free`, `ip`) "
                         + "VALUES ('" + text[0] + "', '" + text[1] + "', '" + text[2] + "', '" + text[3]
                         + "', '" + text[4] + "', '" + text[5] + "', '" + text[6] + "', '" + text[7] + "');");
-            } else if (text[7].equals("127.0.1.1")){
+            } else if (text[7].equals("192.168.1.167")) {
                 myStmt.executeUpdate("INSERT INTO `vault`.`resources_shadowfax` "
                         + "(`time`, `os_type`, `cpu_usage`, `ram_usage`, `ram_total`, `storage_total`, `storage_free`, `ip`) "
                         + "VALUES ('" + text[0] + "', '" + text[1] + "', '" + text[2] + "', '" + text[3]

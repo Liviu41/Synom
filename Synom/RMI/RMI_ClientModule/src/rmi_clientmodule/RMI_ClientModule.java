@@ -14,28 +14,28 @@ public class RMI_ClientModule {
         RMI_InterfaceModule rmi = null;
 
         while (true) {
-        try {
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
-            rmi = (RMI_InterfaceModule) registry.lookup("server");
-            System.out.println("Connected to Server");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (rmi != null) {
             try {
-                Monitor m = new Monitor();
-                String[] s = m.monitor();
-                String message = "Date: " + s[0] + "\n"
-                        + "CPU Usage = " + s[1] + "%\n"
-                        + "RAM Usage = " + s[2] + "MB\n"
-                        + "Total RAM = " + s[3] + "MB\n"
-                        + "----------------------------------------------\n";
-                rmi.sendMessage(s);
-                System.out.println(rmi.getMessage(text));
-            } catch (RemoteException e) {
+                Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
+                rmi = (RMI_InterfaceModule) registry.lookup("server");
+                System.out.println("Connected to Server");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("Operation status: Passed");
+            if (rmi != null) {
+                try {
+                    Monitor m = new Monitor();
+                    String[] s = m.monitor();
+                    String message = "Date: " + s[0] + "\n"
+                            + "CPU Usage = " + s[1] + "%\n"
+                            + "RAM Usage = " + s[2] + "MB\n"
+                            + "Total RAM = " + s[3] + "MB\n"
+                            + "----------------------------------------------\n";
+                    rmi.sendMessage(s);
+                    System.out.println(rmi.getMessage(text));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Operation status: Passed");
             }
             Thread.sleep(1000);
         }
