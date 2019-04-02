@@ -27,7 +27,7 @@ public class Gui {
 
             while (true) {
 
-                gui.setLocation(200, 200);
+                //gui.setLocation(200, 200);
                 gui.setVisible(true);
 
 // Client 1 --------------------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -76,7 +76,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -98,7 +98,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -123,7 +123,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -148,7 +148,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -191,7 +191,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -213,7 +213,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -235,7 +235,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -260,7 +260,7 @@ public class Gui {
                                 break;
                             }
                         }
-                        s2 = s.substring(0, cnt + 3);
+                        s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -285,7 +285,7 @@ public class Gui {
                                 break;
                             }
                         }
-                        s2 = s.substring(0, cnt + 3);
+                        s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -327,7 +327,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -349,7 +349,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -371,7 +371,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -396,7 +396,7 @@ public class Gui {
                                 break;
                             }
                         }
-                        s2 = s.substring(0, cnt + 3);
+                        s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -421,7 +421,7 @@ public class Gui {
                                 break;
                             }
                         }
-                        s2 = s.substring(0, cnt + 3);
+                        s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -463,7 +463,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -485,7 +485,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -507,7 +507,7 @@ public class Gui {
                             break;
                         }
                     }
-                    s2 = s.substring(0, cnt + 3);
+                    s2 = s.substring(0, cnt + 2);
                 }
             }
             if (s.equals("Offline") == false) {
@@ -532,7 +532,7 @@ public class Gui {
                                 break;
                             }
                         }
-                        s2 = s.substring(0, cnt + 3);
+                        s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
@@ -557,7 +557,7 @@ public class Gui {
                                 break;
                             }
                         }
-                        s2 = s.substring(0, cnt + 3);
+                        s2 = s.substring(0, cnt + 2);
                     }
                 }
                 if (s.equals("Offline") == false) {
