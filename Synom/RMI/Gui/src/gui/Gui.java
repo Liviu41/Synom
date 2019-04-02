@@ -46,45 +46,116 @@ public class Gui {
 
                 while (rs.next()) {
                     s = rs.getString("cpu_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label1b.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label1b.setText(s2 + "%");
+                } else {
+                    gui.label1b.setText(s2);
+                }
 
                 String query3 = "select ram_usage from resources_shadowfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query3);
 
                 while (rs.next()) {
                     s = rs.getString("ram_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label1c.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label1c.setText(s2 + " MB");
+                } else {
+                    gui.label1c.setText(s2);
+                }
 
                 String query4 = "select ram_total from resources_shadowfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query4);
 
                 while (rs.next()) {
                     s = rs.getString("ram_total");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label1d.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label1d.setText(s2 + " MB");
+                } else {
+                    gui.label1d.setText(s2);
+                }
 
                 String query5 = "select storage_total from resources_shadowfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query5);
 
                 while (rs.next()) {
                     s = rs.getString("storage_total");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                    Double number = Double.parseDouble(s);
+                    number = number / 1000;
+                    s = number.toString();
+                    int cnt = 0;
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label1e.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label1e.setText(s2 + " GB");
+                } else {
+                    gui.label1e.setText(s2);
+                }
 
                 String query6 = "select storage_free from resources_shadowfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query6);
 
                 while (rs.next()) {
                     s = rs.getString("storage_free");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                    Double number = Double.parseDouble(s);
+                    number = number / 1000;
+                    s = number.toString();
+                    int cnt = 0;
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label1f.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label1f.setText(s2 + " GB");
+                } else {
+                    gui.label1f.setText(s2);
+                }
 
                 String query7 = "select ip from resources_shadowfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query7);
@@ -112,45 +183,116 @@ public class Gui {
 
                 while (rs.next()) {
                     s = rs.getString("cpu_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label2b.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label2b.setText(s2 + "%");
+                } else {
+                    gui.label2b.setText(s2);
+                }
 
                 String query10 = "select ram_usage from resources_lightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query10);
 
                 while (rs.next()) {
                     s = rs.getString("ram_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label2c.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label2c.setText(s2 + " MB");
+                } else {
+                    gui.label2c.setText(s2);
+                }
 
                 String query11 = "select ram_total from resources_lightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query11);
 
                 while (rs.next()) {
                     s = rs.getString("ram_total");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label2d.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label2d.setText(s2 + " MB");
+                } else {
+                    gui.label2d.setText(s2);
+                }
 
                 String query12 = "select storage_total from resources_lightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query12);
 
                 while (rs.next()) {
                     s = rs.getString("storage_total");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                        Double number = Double.parseDouble(s);
+                        number = number / 1000;
+                        s = number.toString();
+                        int cnt = 0;
+                        for (int i = 0; i < s.length(); i++) {
+                            if (Character.isDigit(s.charAt(i)) == false) {
+                                cnt = i;
+                                break;
+                            }
+                        }
+                        s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label2e.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label2e.setText(s2 + " GB");
+                } else {
+                    gui.label2e.setText(s2);
+                }
 
                 String query13 = "select storage_free from resources_lightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query13);
 
                 while (rs.next()) {
                     s = rs.getString("storage_free");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                        Double number = Double.parseDouble(s);
+                        number = number / 1000;
+                        s = number.toString();
+                        int cnt = 0;
+                        for (int i = 0; i < s.length(); i++) {
+                            if (Character.isDigit(s.charAt(i)) == false) {
+                                cnt = i;
+                                break;
+                            }
+                        }
+                        s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label2f.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label2f.setText(s2 + " GB");
+                } else {
+                    gui.label2f.setText(s2);
+                }
 
                 String query14 = "select ip from resources_lightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query14);
@@ -177,45 +319,116 @@ public class Gui {
 
                 while (rs.next()) {
                     s = rs.getString("cpu_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label3b.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label3b.setText(s2 + "%");
+                } else {
+                    gui.label3b.setText(s2);
+                }
 
                 String query17 = "select ram_usage from resources_darkfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query17);
 
                 while (rs.next()) {
                     s = rs.getString("ram_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label3c.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label3c.setText(s2 + " MB");
+                } else {
+                    gui.label3c.setText(s2);
+                }
 
                 String query18 = "select ram_total from resources_darkfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query18);
 
                 while (rs.next()) {
                     s = rs.getString("ram_total");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label3d.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label3d.setText(s2 + " MB");
+                } else {
+                    gui.label3d.setText(s2);
+                }
 
                 String query19 = "select storage_total from resources_darkfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query19);
 
                 while (rs.next()) {
                     s = rs.getString("storage_total");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                        Double number = Double.parseDouble(s);
+                        number = number / 1000;
+                        s = number.toString();
+                        int cnt = 0;
+                        for (int i = 0; i < s.length(); i++) {
+                            if (Character.isDigit(s.charAt(i)) == false) {
+                                cnt = i;
+                                break;
+                            }
+                        }
+                        s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label3e.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label3e.setText(s2 + " GB");
+                } else {
+                    gui.label3e.setText(s2);
+                }
 
                 String query20 = "select storage_free from resources_darkfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query20);
 
                 while (rs.next()) {
                     s = rs.getString("storage_free");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                        Double number = Double.parseDouble(s);
+                        number = number / 1000;
+                        s = number.toString();
+                        int cnt = 0;
+                        for (int i = 0; i < s.length(); i++) {
+                            if (Character.isDigit(s.charAt(i)) == false) {
+                                cnt = i;
+                                break;
+                            }
+                        }
+                        s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label3f.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label3f.setText(s2 + " GB");
+                } else {
+                    gui.label3f.setText(s2);
+                }
 
                 String query21 = "select ip from resources_darkfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query21);
@@ -242,45 +455,116 @@ public class Gui {
 
                 while (rs.next()) {
                     s = rs.getString("cpu_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label4b.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label4b.setText(s2 + "%");
+                } else {
+                    gui.label4b.setText(s2);
+                }
 
                 String query24 = "select ram_usage from resources_brightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query24);
 
                 while (rs.next()) {
                     s = rs.getString("ram_usage");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label4c.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label4c.setText(s2 + " MB");
+                } else {
+                    gui.label4c.setText(s2);
+                }
 
                 String query25 = "select ram_total from resources_brightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query25);
 
                 while (rs.next()) {
                     s = rs.getString("ram_total");
-                    s2 = s;
+                    int cnt = 0;
+                    if (s.equals("Offline") == false) {
+                    for (int i = 0; i < s.length(); i++) {
+                        if (Character.isDigit(s.charAt(i)) == false) {
+                            cnt = i;
+                            break;
+                        }
+                    }
+                    s2 = s.substring(0, cnt + 3);
                 }
+            }
+            if (s.equals("Offline") == false) {
+                gui.label4d.setText(s2 + " MB");
+            } else {
                 gui.label4d.setText(s2);
+            }
 
                 String query26 = "select storage_total from resources_brightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query26);
 
                 while (rs.next()) {
                     s = rs.getString("storage_total");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                        Double number = Double.parseDouble(s);
+                        number = number / 1000;
+                        s = number.toString();
+                        int cnt = 0;
+                        for (int i = 0; i < s.length(); i++) {
+                            if (Character.isDigit(s.charAt(i)) == false) {
+                                cnt = i;
+                                break;
+                            }
+                        }
+                        s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label4e.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label4e.setText(s2 + " GB");
+                } else {
+                    gui.label4e.setText(s2);
+                }
 
                 String query27 = "select storage_free from resources_brightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query27);
 
                 while (rs.next()) {
                     s = rs.getString("storage_free");
-                    s2 = s;
+                    if (s.equals("Offline") == false) {
+                        Double number = Double.parseDouble(s);
+                        number = number / 1000;
+                        s = number.toString();
+                        int cnt = 0;
+                        for (int i = 0; i < s.length(); i++) {
+                            if (Character.isDigit(s.charAt(i)) == false) {
+                                cnt = i;
+                                break;
+                            }
+                        }
+                        s2 = s.substring(0, cnt + 3);
+                    }
                 }
-                gui.label4f.setText(s2);
+                if (s.equals("Offline") == false) {
+                    gui.label4f.setText(s2 + " GB");
+                } else {
+                    gui.label4f.setText(s2);
+                }
 
                 String query28 = "select ip from resources_brightfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query28);
