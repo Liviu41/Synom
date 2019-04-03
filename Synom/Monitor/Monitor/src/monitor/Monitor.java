@@ -43,22 +43,46 @@ public class Monitor {
         totalRAM = mbean.getTotalPhysicalMemorySize();
         totalRAMText = totalRAM / 1024 / 1024;
 
-        // Code for getting the list of processes FOR WINDOWS OS!!
-        String[] initial_list = new String[500];
-        Process process = Runtime.getRuntime().exec("tasklist.exe /FI \"CPUTIME gt 00:00:10\" "
-                + "/FI \"SESSION eq 1\" /FI \"STATUS eq RUNNING\" /FI \"MEMUSAGE gt 50000\"");
-        Scanner scanner = new Scanner(new InputStreamReader(process.getInputStream()));
-        for (int i = 0; scanner.hasNext() != false; ++i) {
-            initial_list[i] = scanner.nextLine();
-        }
-        scanner.close();
+        Process process = null;
+        String processes = null;
+        
+        if (operatingSystem.equals("Windows10")) {
+            // Code for getting the list of processes FOR WINDOWS OS!!
+            String[] initial_list = new String[500];
+            process = Runtime.getRuntime().exec("tasklist.exe /FI \"CPUTIME gt 00:00:10\" "
+                    + "/FI \"SESSION eq 1\" /FI \"STATUS eq RUNNING\" /FI \"MEMUSAGE gt 50000\"");
+            Scanner scanner = new Scanner(new InputStreamReader(process.getInputStream()));
+            for (int i = 0; scanner.hasNext() != false; ++i) {
+                initial_list[i] = scanner.nextLine();
+            }
+            scanner.close();
+            processes = new String();
+            for (int i = 0; i < initial_list.length; i++) {
+                if (initial_list[i] != null) {
+                    processes = processes + initial_list[i] + "\n";
+                } else {
+                    break;
+                }
+            }
+        } else {
 
-        String processes = new String();
-        for (int i = 0; i < initial_list.length; i++) {
-            if (initial_list[i] != null) {
-                processes = processes + initial_list[i] + "\n";
-            } else {
-                break;
+            process = Runtime.getRuntime().exec("ps axo user,pid,%cpu,%mem,cmd --sort -rss");
+            String[] s = new String[500];
+            Scanner scanner = new Scanner(new InputStreamReader(process.getInputStream()));
+            for (int i = 0; scanner.hasNext() != false; ++i) {
+                s[i] = scanner.nextLine();
+            }
+            scanner.close();
+
+            int cnt = 0;
+            processes = new String();
+            for (int i = 0; i < s.length; i++) {
+                if ((s[i] != null) && (cnt <= 20)) {
+                    processes = processes + s[i] + "\n";
+                    cnt++;
+                } else {
+                    break;
+                }
             }
         }
 
