@@ -2,10 +2,13 @@ package monitor;
 
 import com.sun.management.OperatingSystemMXBean;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Monitor {
 
@@ -22,8 +25,9 @@ public class Monitor {
         status[5] = totalStorageText.toString();
         status[6] = freeStorageText.toString();
         status[7] = inetAddress;
+        status[8] = processes;
      */
-    public String[] monitor() throws InterruptedException, UnknownHostException {
+    public String[] monitor() throws InterruptedException, UnknownHostException, IOException {
         String operatingSystem_uncut = System.getProperty("os.name");
         String operatingSystem = operatingSystem_uncut.replaceAll("\\s+", "");
 
@@ -39,6 +43,25 @@ public class Monitor {
         totalRAM = mbean.getTotalPhysicalMemorySize();
         totalRAMText = totalRAM / 1024 / 1024;
 
+        // Code for getting the list of processes FOR WINDOWS OS!!
+        String[] initial_list = new String[500];
+        Process process = Runtime.getRuntime().exec("tasklist.exe /FI \"CPUTIME gt 00:00:10\" "
+                + "/FI \"SESSION eq 1\" /FI \"STATUS eq RUNNING\" /FI \"MEMUSAGE gt 50000\"");
+        Scanner scanner = new Scanner(new InputStreamReader(process.getInputStream()));
+        for (int i = 0; scanner.hasNext() != false; ++i) {
+            initial_list[i] = scanner.nextLine();
+        }
+        scanner.close();
+
+        String processes = new String();
+        for (int i = 0; i < initial_list.length; i++) {
+            if (initial_list[i] != null) {
+                processes = processes + initial_list[i] + "\n";
+            } else {
+                break;
+            }
+        }
+
         LocalDateTime now = LocalDateTime.now();
 
         File file = null;
@@ -49,7 +72,6 @@ public class Monitor {
         }
         freeStorage = file.getFreeSpace();
         totalStorage = file.getTotalSpace();
-
 
         freeStorageText = freeStorage / 1024 / 1024;
         totalStorageText = totalStorage / 1024 / 1024;
@@ -66,10 +88,11 @@ public class Monitor {
         status[5] = totalStorageText.toString();
         status[6] = freeStorageText.toString();
         status[7] = inetAddress;
+        status[8] = processes;
         return status;
     }
 
-    public static void main(String[] args) throws InterruptedException, UnknownHostException {
+    public static void main(String[] args) throws InterruptedException, UnknownHostException, IOException {
         Monitor a = new Monitor();
         String[] s = a.monitor();
         System.out.println(s[1]);

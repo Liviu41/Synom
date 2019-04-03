@@ -1,5 +1,6 @@
 package rmi_clientmodule;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -9,7 +10,7 @@ import rmi_interfacemodule.RMI_InterfaceModule;
 
 public class RMI_ClientModule {
 
-    public static void main(String[] args) throws InterruptedException, UnknownHostException {
+    public static void main(String[] args) throws InterruptedException, UnknownHostException, IOException {
         String text = "RMI Test Message";
         RMI_InterfaceModule rmi = null;
 
