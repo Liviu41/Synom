@@ -119,7 +119,7 @@ public class Monitor {
     public static void main(String[] args) throws InterruptedException, UnknownHostException, IOException {
         Monitor a = new Monitor();
         String[] s = a.monitor();
-        System.out.println(s[1]);
+        System.out.println(s[7]);
     }
 
 }

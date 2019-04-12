@@ -19,7 +19,7 @@ public class RMI_ServerModule extends RMI_Methods implements RMI_InterfaceModule
         RMI_ServerModule serverObject = new RMI_ServerModule();
         System.out.println("Server status: Active");
         try {
-            reg.rebind("server", (RMI_InterfaceModule) UnicastRemoteObject.exportObject(serverObject, 0));
+            reg.rebind("server", (RMI_InterfaceModule) UnicastRemoteObject.exportObject(serverObject, 1099));
         } catch (Exception e) {
             System.out.println("ERROR: Failed to register the server object.");
             e.printStackTrace();
