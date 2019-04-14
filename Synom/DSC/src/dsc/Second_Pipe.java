@@ -18,33 +18,26 @@ import java.util.Map;
 public class Second_Pipe {
 
     static String matrix[][][] = new String[600][10][2];
+    static String s = new String();
 
     static void secondDataSet() {
         matrix = First_Pipe.firstDataSet();
 
-        Map hashMap = new HashMap();
-        List<Map> list = new ArrayList();
-
-        String mem_usages[] = new String[5];
-
-        /* mapare pid -> ram1 ram2 ram3
-        35 - 39 sunt gresite
-        */
-        
-        
-        //for (int j = 0; matrix[0][j][0] != null; j++) {
-            for (int i = 0; i < 5; ++i) {
-                mem_usages[i] = matrix[0][i][1];
+        for (int j = 0; j < 5; j++) {
+            if (s.isEmpty() == true) {
+                s = matrix[0][0][0] + " " + matrix[0][0][1];
+            } else {
+                s = s + matrix[0][j][0] + " " + matrix[0][j][1];
             }
-        //}
-
-        hashMap.put(matrix[0][0][0], mem_usages);
-
-        for (Object name : hashMap.keySet()) {
-            String key = name.toString();
-            String[] value = (String[]) hashMap.get(name);
-            System.out.println(key + " " + value[0] + " " + value[1] + " " + value[2] + " " + value[3] + " " + value[4]);
+            for (int i = 1; i < 12; i++) {
+                if (matrix[i][j][0].equals(matrix[0][j][0])) {
+                    s = s + " " + matrix[i][j][1];
+                }
+            }
+            s = s + "\n";
         }
+
+        System.out.println(s);
     }
 
 }
