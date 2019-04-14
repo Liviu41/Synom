@@ -20,3 +20,11 @@ SELECT table_schema "vault",
         ROUND(SUM(data_length + index_length) / 1024 , 1) "DB Size in KB" 
 FROM information_schema.tables 
 GROUP BY table_schema; 
+
+select processes from
+  (select processes from resources_shadowfax order by idresources desc limit 2) resources_shadowfax
+order by idresources limit 1;
+
+SELECT processes FROM resources_shadowfax ORDER BY idresources DESC LIMIT 0,1;
+
+SELECT * FROM resources_shadowfax ORDER BY idresources DESC LIMIT 552,1;

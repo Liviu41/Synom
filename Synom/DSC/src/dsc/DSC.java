@@ -15,7 +15,13 @@ import java.util.logging.Logger;
 
 public class DSC {
 
-    static int[][][] dataSet = new int[100][100][100];
+    /*
+    dataSet =
+    dimension 1 = id of process list
+    dimension 2 = PID
+    dimension 3 = memory usage
+     */
+    static String[][][] dataSet = new String[1000][1000][2];
 
     public static void main(String[] args) {
 
@@ -26,45 +32,74 @@ public class DSC {
         String user = "root";
         String pass = "fenderice9";
 
+        //int x = 0;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
             myStmt = myConn.createStatement();
 
-            String query1 = "select processes from resources_shadowfax order by idresources desc limit 1";
-            ResultSet rs = myStmt.executeQuery(query1);
+            for (int x = 0; x < 553; x++) {
+                String query1 = "SELECT processes FROM resources_shadowfax ORDER BY idresources DESC LIMIT "
+                        + Integer.toString(x) + ",1;";
+                ResultSet rs = myStmt.executeQuery(query1);
 
-            String s = null;
-            while (rs.next()) {
-                s = rs.getString("processes");
+                String s = null;
+                while (rs.next()) {
+                    s = rs.getString("processes");
             }
             s = s.substring(155, s.length() - 1);
-            s = s.replace(' ', '_');
-            StringBuilder se = new StringBuilder(s);
+                s = s.replace(' ', '_');
+                StringBuilder se = new StringBuilder(s);
 
-            for (int k = 0; k < 4; k++) {
-            for (int i = se.indexOf("_"); se.charAt(i) == '_'; i++) {
-                se.deleteCharAt(i);
+                for (int k = 0; k < 4; k++) {
+                    for (int i = se.indexOf("_"); se.charAt(i) == '_'; i++) {
+                        se.deleteCharAt(i);
+                    }
+                }
+
+                for (int k = 0; k < 5; k++) {
+                    for (int i = 0; i < se.length() - 1; i++) {
+                        if (se.charAt(i) == se.charAt(i + 1) && se.charAt(i) == '_') {
+                            se.deleteCharAt(i);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < se.length() - 3; i++) {
+                    if (se.charAt(i) == '_' && se.charAt(i + 1) == 'K' && se.charAt(i + 2) == '\n') {
+                        se.deleteCharAt(i);
+                        se.deleteCharAt(i);
+                    }
+                }
+
+                int numberOfProcesses = 0;
+
+                for (int i = 0; i < se.length(); i++) {
+                    if (se.charAt(i) == '\n') {
+                        numberOfProcesses++;
+                    }
+                }
+
+                int index, index2 = 0;
+
+                StringBuilder cutted = new StringBuilder(se);
+
+                for (int i = 0; i <= numberOfProcesses; i++) {
+                    index = cutted.indexOf("_");
+                    dataSet[x][i][0] = cutted.substring(index + 1, cutted.indexOf("_", index + 1));
+                    for (int h = 0; h < 4; h++) {
+                        cutted.delete(0, index + 1);
+                        index = cutted.indexOf("_");
+                    }
+                    for (int p = 0; p < cutted.length(); p++) {
+                        if (cutted.charAt(p) == '\n') {
+                            index2 = p;
+                            break;
+                        }
+                    }
+                    dataSet[x][i][1] = cutted.substring(0, index2);
+                    cutted.delete(0, index2 + 1);
                 }
             }
-
-            for (int k = 0; k < 5; k++)
-            for (int i = 0; i < se.length() - 1; i++) {
-                if (se.charAt(i) == se.charAt(i + 1) && se.charAt(i) == '_') {
-                    se.deleteCharAt(i);
-                }
-                }
-
-            for (int i = 0; i < se.length() - 3; i++) {
-                if (se.charAt(i) == '_' && se.charAt(i + 1) == 'K' && se.charAt(i + 2) == '\n') {
-                    se.deleteCharAt(i);
-                    se.deleteCharAt(i);
-                }
-            }
-
-            System.out.println(se);
-
-            int getPID;
-            //getPID = s.
 
         } catch (Exception exc) {
             exc.printStackTrace();
