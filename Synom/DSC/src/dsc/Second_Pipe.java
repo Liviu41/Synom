@@ -5,12 +5,6 @@
  */
 package dsc;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  *
  * @author liviu
@@ -21,7 +15,6 @@ public class Second_Pipe {
     static String s = new String();
     static double[][] mem = new double[20][20];
     static double[] pid = new double[20];
-    static double dispersion = 0;
 
     static void secondDataSet() {
         matrix = First_Pipe.firstDataSet();
@@ -84,13 +77,38 @@ public class Second_Pipe {
             }
         }
 
-        //calculate mean of each process
+        //compute mean of each process
         for (int i = 0; i < 5; i++) {
-            mean[i] = sum[i] / 5;
+            mean[i] = sum[i] / 12;
         }
         
-        double disperion[] = new double[100];
+        //for(int i = 0 ; i < 5 ; i++)
+        //    System.out.println(mean[i]);
 
+        double variance[] = new double[100];
+        
+        for(int i = 0 ; i<5;i++)
+            variance[i] = 0;
+
+        // compute variance as:
+        // sigma = sum((x - mean)^2)
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 12; j++) {
+                variance[i] = variance[i] + Math.pow(mem[i][j] - mean[i], 2);
+            }
+        }
+
+        double dispersion[] = new double[100];
+        
+        for(int i = 0 ; i < 5 ; i++)
+            dispersion[i] = 0;
+        
+        // dispersion: d = sqrt(sigma)
+        for(int i = 0 ; i < 5 ; i++)
+            dispersion[i] = Math.sqrt(variance[i]);
+        
+        for(int i = 0 ; i < 5; i++)
+            System.out.println(dispersion[i]);
     }
 
 }
