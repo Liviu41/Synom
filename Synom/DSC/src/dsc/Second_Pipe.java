@@ -132,6 +132,12 @@ public class Second_Pipe {
         for (int ct = 0; ct < noOfEntries; ct++) {
             for (int i = 0; i < noOfCrtProcs; i++) {
                 dispersion[ct][i] = Math.sqrt(variance[ct][i]);
+                if (dispersion[ct][i] > 0.5) {
+                    dispersion[ct][i] = 0.2;
+                }
+                if (dispersion[ct][i] < 0.1 && dispersion[ct][i] > 0.03) {
+                    dispersion[ct][i] = 0.2;
+                }
             }
         }
 
@@ -158,7 +164,7 @@ public class Second_Pipe {
         Double formatDispersion[][] = new Double[1000][100];
         for (int ct = 0; ct < noOfEntries; ct++) {
             for (int i = 0; i < noOfCrtProcs; i++) {
-                formatDispersion[ct][i] = Double.parseDouble(String.format("%.10f", dispersion[ct][i]));
+                formatDispersion[ct][i] = Double.parseDouble(String.format("%.10f", dispersion[ct][i])) * 1000;
             }
         }
 
@@ -167,11 +173,11 @@ public class Second_Pipe {
         for (int ct = 0; ct < noOfEntries; ct++) {
             for (int i = 0; i < noOfCrtProcs; i++) {
                 if (ready == null) {
-                    ready = testPID[j] + " " + formatDispersion[ct][i];
+                    ready = formatDispersion[ct][i].toString();
                     ready += "\n";
                     j++;
                 } else {
-                    ready += testPID[j] + " " + formatDispersion[ct][i];
+                    ready += formatDispersion[ct][i].toString();
                     ready += "\n";
                     j++;
                 }
@@ -180,7 +186,7 @@ public class Second_Pipe {
 
         System.out.println(ready);
 
-        PrintWriter out = new PrintWriter("C:\\Users\\Liviu\\Desktop\\DataSet.txt");
+        PrintWriter out = new PrintWriter("..\\DataSet.txt");
         out.println(ready);
         out.close();
     }
