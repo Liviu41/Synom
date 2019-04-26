@@ -13,11 +13,11 @@ import java.io.PrintWriter;
 
 public class Dispersion {
 
-    static String matrix[][][] = new String[600][10][2];
+    public static String matrix[][][] = new String[600][10][2];
 
     // value to be set if mem usage of PID cannot be found
     // back in time at a certain entry
-    static Double specialValue = 32767.0;
+    public static Double specialValue = 32767.0;
 
     public static void secondDataSet() throws FileNotFoundException {
         matrix = First_Pipe.firstDataSet();

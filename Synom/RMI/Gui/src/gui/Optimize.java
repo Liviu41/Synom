@@ -1,10 +1,11 @@
 package gui;
 
 import dsc.Dispersion;
-/**
- *
- * @author Liviu
- */
+import java.io.FileNotFoundException;
+
 public class Optimize {
 
+    public static void optimize() throws FileNotFoundException {
+        Dispersion.secondDataSet();
+    }
 }
