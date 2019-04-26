@@ -5,16 +5,17 @@ import java.io.PrintWriter;
 
 public class Second_Pipe {
 
-    static int noOfCrtProcs = 5;
-    static int noOfTimeCaptures = 12;
-    static int noOfEntries = 30;
+    static int noOfTimeCaptures = 5;
+    static int noOfEntries = 1;
     static String matrix[][][] = new String[600][10][2];
     static String s = new String();
-    static double[][][] mem = new double[noOfEntries][noOfCrtProcs][noOfTimeCaptures + 1];
-    static int[][] pid = new int[noOfEntries][noOfCrtProcs];
 
     static void secondDataSet() throws FileNotFoundException {
         matrix = First_Pipe.firstDataSet();
+
+        int noOfCrtProcs = matrix[0].length;
+        double[][][] mem = new double[noOfEntries][noOfCrtProcs][noOfTimeCaptures + 1];
+        int[][] pid = new int[noOfEntries][noOfCrtProcs];
 
         /* These lines create an array string with the following form:
         pid1 ramNow ramNow-1 ramNow-2...ramNow-noOfTimeCaptures
@@ -186,7 +187,7 @@ public class Second_Pipe {
 
         System.out.println(ready);
 
-        PrintWriter out = new PrintWriter("..\\DataSet.txt");
+        PrintWriter out = new PrintWriter("..\\Data_Sets\\DataSet.txt");
         out.println(ready);
         out.close();
     }

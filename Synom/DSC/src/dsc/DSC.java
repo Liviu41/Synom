@@ -11,7 +11,7 @@ public class DSC {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        Second_Pipe.secondDataSet();
+        Dispersion.secondDataSet();
     }
 
 }

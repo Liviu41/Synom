@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 
 public class First_Pipe {
 
+    // how many entries backward in time to get
+    public static int noOfEntries = 6;
+
     public static String[][][] firstDataSet() {
 
         /*
@@ -23,7 +26,9 @@ public class First_Pipe {
             dimension 2 = entry nr in processes
             dimension 3 = PID/Mem Usage
          */
-        String[][][] dataSet = new String[600][10][2];
+        String[][][] dataSet = new String[600][15][2];
+        // needed for double points bug
+        String[][][] dataSet2 = new String[600][15][2];
 
         Connection myConn = null;
         Statement myStmt = null;
@@ -37,7 +42,9 @@ public class First_Pipe {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
             myStmt = myConn.createStatement();
 
-            for (int x = 0; x < 553; x++) {
+            for (int x = 0; x < noOfEntries; x++) {
+
+                // get each process list from database
                 String query1 = "SELECT processes FROM resources_shadowfax ORDER BY idresources DESC LIMIT "
                         + Integer.toString(x) + ",1;";
                 ResultSet rs = myStmt.executeQuery(query1);
@@ -50,11 +57,14 @@ public class First_Pipe {
                 s = s.replace(' ', '_');
                 StringBuilder se = new StringBuilder(s);
 
-                for(int k=0;k<se.length();k++){
-                    if(se.charAt(k)==',')
-                        se.replace(k, k+1, ".");
+                // replace "," with "."
+                for (int k = 0; k < se.length(); k++) {
+                    if (se.charAt(k) == ',') {
+                        se.replace(k, k + 1, ".");
+                    }
                 }
-                
+
+                // leave only one "_" to delimit
                 for (int k = 0; k < 4; k++) {
                     for (int i = se.indexOf("_"); se.charAt(i) == '_'; i++) {
                         se.deleteCharAt(i);
@@ -69,6 +79,7 @@ public class First_Pipe {
                     }
                 }
 
+                // delete the "K" at the end
                 for (int i = 0; i < se.length() - 3; i++) {
                     if (se.charAt(i) == '_' && se.charAt(i + 1) == 'K' && se.charAt(i + 2) == '\n') {
                         se.deleteCharAt(i);
@@ -85,6 +96,12 @@ public class First_Pipe {
                 }
 
                 int index, index2 = 0;
+
+                for (int i = 0; i < se.length(); i++) {
+                    if (se.charAt(i) == '.') {
+                        se.delete(i, i + 1);
+                    }
+                }
 
                 StringBuilder cutted = new StringBuilder(se);
 

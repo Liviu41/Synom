@@ -49,8 +49,8 @@ public class Monitor {
         if (operatingSystem.equals("Windows10")) {
             // Code for getting the list of processes FOR WINDOWS OS!!
             String[] initial_list = new String[500];
-            process = Runtime.getRuntime().exec("tasklist.exe /FI \"CPUTIME gt 00:00:02\" "
-                    + "/FI \"SESSION eq 1\" /FI \"STATUS eq RUNNING\" /FI \"MEMUSAGE gt 50000\"");
+            process = Runtime.getRuntime().exec("tasklist.exe "
+                    + "/FI \"SESSION eq 1\" /FI \"STATUS eq RUNNING\" /FI \"MEMUSAGE gt 100000\"");
             Scanner scanner = new Scanner(new InputStreamReader(process.getInputStream()));
             for (int i = 0; scanner.hasNext() != false; ++i) {
                 initial_list[i] = scanner.nextLine();
