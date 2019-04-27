@@ -123,7 +123,7 @@ public class Dispersion {
             }
         }
 
-        PrintWriter out = new PrintWriter("..\\Data_Sets\\toBeClustered.txt");
+        PrintWriter out = new PrintWriter("..\\..\\Data_Sets\\toBeClustered.txt");
         out.println(ready);
         out.close();
     }

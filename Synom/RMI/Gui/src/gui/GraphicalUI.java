@@ -5,6 +5,11 @@
  */
 package gui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author liviu
@@ -94,6 +99,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         label4b = new javax.swing.JLabel();
         label4a = new javax.swing.JLabel();
         optimize = new javax.swing.JButton();
+        okLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -711,12 +717,18 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         tabbedPane.addTab("Client 4", jPanel4);
 
+        optimize.setBackground(new java.awt.Color(51, 51, 51));
+        optimize.setForeground(new java.awt.Color(51, 255, 51));
         optimize.setText("Optimize");
         optimize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optimizeActionPerformed(evt);
             }
         });
+
+        okLabel.setForeground(new java.awt.Color(0, 255, 0));
+        okLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        okLabel.setText("OK");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -726,7 +738,9 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(optimize)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(optimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(okLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -738,7 +752,9 @@ public class GraphicalUI extends javax.swing.JFrame {
                         .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(149, 149, 149)
-                        .addComponent(optimize)))
+                        .addComponent(optimize)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(okLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -762,7 +778,13 @@ public class GraphicalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void optimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optimizeActionPerformed
-        
+        try {
+            Optimize.optimize();
+        } catch (IOException ex) {
+            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_optimizeActionPerformed
 
     /**
@@ -866,6 +888,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     public javax.swing.JLabel label4e;
     public javax.swing.JLabel label4f;
     public javax.swing.JLabel label4g;
+    public static javax.swing.JLabel okLabel;
     private javax.swing.JButton optimize;
     public javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables

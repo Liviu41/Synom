@@ -1,7 +1,7 @@
 import numpy as np 
 from sklearn.cluster import KMeans
 
-f= open("..\\Data_Sets\\DataSet_Artificial_Windows.txt","r")
+f= open("E:\Synom\Synom\Data_Sets\DataSet_Artificial_Windows.txt","r")
 
 dataSet = f.read()
 f.close()
@@ -43,7 +43,7 @@ kmeans.fit(dispersions)
 
 
 
-f= open("..\\Data_Sets\\toBeClustered.txt","r")
+f= open("E:\\Synom\\Synom\\Data_Sets\\toBeClustered.txt","r")
 
 toBeClustered = f.read()
 f.close()
@@ -119,7 +119,7 @@ for i in range(0, len(arr)):
 
 print(toBeKilled)
 
-g = open("..\\Data_Sets\\toBeKilled.txt","w+")
+g = open("E:\\Synom\\Synom\\Data_Sets\\toBeKilled.txt","w+")
 g.write(toBeKilled)
 g.close()
        
