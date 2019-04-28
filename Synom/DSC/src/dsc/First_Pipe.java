@@ -118,7 +118,14 @@ public class First_Pipe {
                             break;
                         }
                     }
-                    dataSet[x][i][1] = cutted.substring(0, index2);
+
+                    // solution for bug which caused last mem string
+                    // in case of noOfProc <5 to have a "_" at the end
+                    if (cutted.substring(0, index2).contains("_")) {
+                        dataSet[x][i][1] = cutted.substring(0, index2 - 1) + "";
+                    } else {
+                        dataSet[x][i][1] = cutted.substring(0, index2);
+                    }
                     cutted.delete(0, index2 + 1);
                 }
             }

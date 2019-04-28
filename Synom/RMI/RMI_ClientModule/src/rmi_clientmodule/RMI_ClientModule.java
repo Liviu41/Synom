@@ -38,7 +38,7 @@ public class RMI_ClientModule {
                 }
                 System.out.println("Operation status: Passed");
             }
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         }
     }
 

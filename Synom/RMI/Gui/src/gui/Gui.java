@@ -12,6 +12,9 @@ public class Gui {
 
     public static GraphicalUI gui = new GraphicalUI();
     static String s = null;
+    public static final Chart chartCPU = new Chart("CPU Chart", "cpu");
+    public static final Chart chartRAM = new Chart("RAM Chart", "ram");
+
 
     public static void main(String[] args) throws SQLException {
         Connection myConn = null;
@@ -165,6 +168,8 @@ public class Gui {
                     s2 = s;
                 }
                 gui.label1g.setText(s2);
+                chartCPU.button.doClick();
+                chartRAM.button.doClick();
 //-----------------------------------------------------------------------------------------------------------------------------
 
 // Client 2--------------------------------------------------------------------------------------------------------------------

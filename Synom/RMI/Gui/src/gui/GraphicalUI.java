@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jfree.ui.RefineryUtilities;
 
 /**
  *
@@ -100,6 +101,8 @@ public class GraphicalUI extends javax.swing.JFrame {
         label4a = new javax.swing.JLabel();
         optimize = new javax.swing.JButton();
         okLabel = new javax.swing.JLabel();
+        cpuGraph = new javax.swing.JButton();
+        ramGraph = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -728,7 +731,25 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         okLabel.setForeground(new java.awt.Color(0, 255, 0));
         okLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        okLabel.setText("OK");
+        okLabel.setText("Status: OK");
+
+        cpuGraph.setBackground(new java.awt.Color(51, 51, 51));
+        cpuGraph.setForeground(new java.awt.Color(0, 255, 51));
+        cpuGraph.setText("CPU Graph");
+        cpuGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpuGraphActionPerformed(evt);
+            }
+        });
+
+        ramGraph.setBackground(new java.awt.Color(51, 51, 51));
+        ramGraph.setForeground(new java.awt.Color(51, 255, 51));
+        ramGraph.setText("RAM graph");
+        ramGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ramGraphActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -737,34 +758,37 @@ public class GraphicalUI extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(optimize)
-                    .addComponent(okLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cpuGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ramGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(optimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(okLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(optimize)
-                        .addGap(18, 18, 18)
-                        .addComponent(okLabel)))
+                .addContainerGap()
+                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cpuGraph)
+                .addGap(18, 18, 18)
+                .addComponent(ramGraph)
+                .addGap(18, 18, 18)
+                .addComponent(optimize)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(okLabel)
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -785,6 +809,26 @@ public class GraphicalUI extends javax.swing.JFrame {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_optimizeActionPerformed
+
+    private void cpuGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpuGraphActionPerformed
+        // TODO add your handling code here:
+        gui.Gui.chartCPU.setVisible(true);
+        gui.Gui.chartCPU.pack();
+        RefineryUtilities.centerFrameOnScreen(gui.Gui.chartCPU);
+        gui.Gui.chartCPU.setVisible(true);
+        gui.Gui.chartCPU.button.setVisible(false);
+        this.cpuGraph.setEnabled(false);
+    }//GEN-LAST:event_cpuGraphActionPerformed
+
+    private void ramGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramGraphActionPerformed
+        // TODO add your handling code here:
+        gui.Gui.chartRAM.setVisible(true);
+        gui.Gui.chartRAM.pack();
+        RefineryUtilities.centerFrameOnScreen(gui.Gui.chartRAM);
+        gui.Gui.chartRAM.setVisible(true);
+        gui.Gui.chartRAM.button.setVisible(false);
+        this.ramGraph.setEnabled(false);
+    }//GEN-LAST:event_ramGraphActionPerformed
 
     /**
      * @param args the command line arguments
@@ -822,6 +866,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton cpuGraph;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -858,10 +903,10 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    public static javax.swing.JPanel jPanel5;
     public javax.swing.JLabel label1a;
-    public javax.swing.JLabel label1b;
-    public javax.swing.JLabel label1c;
+    public static javax.swing.JLabel label1b;
+    public static javax.swing.JLabel label1c;
     public javax.swing.JLabel label1d;
     public javax.swing.JLabel label1e;
     public javax.swing.JLabel label1f;
@@ -889,6 +934,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     public javax.swing.JLabel label4g;
     public static javax.swing.JLabel okLabel;
     private javax.swing.JButton optimize;
+    public static javax.swing.JButton ramGraph;
     public javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
 }

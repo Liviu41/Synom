@@ -22,7 +22,7 @@ public class Optimize {
         }
         // label set to finish as soon as the pids have been clustered
         if (python.isAlive() == false) {
-            GraphicalUI.okLabel.setText("Finished");
+            GraphicalUI.okLabel.setText("Status: Finished");
         }
 
         // array of Strings to be killed

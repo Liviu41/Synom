@@ -22,7 +22,15 @@ public class Dispersion {
     public static void secondDataSet() throws FileNotFoundException {
         matrix = First_Pipe.firstDataSet();
 
-        int noOfProcesses = 5;
+        // calculate dinamically the number of processes
+        int noOfProcs = 0;
+        while (matrix[0][noOfProcs][0] != null) {
+            noOfProcs++;
+        }
+
+        int noOfProcesses = noOfProcs;
+
+        // to be set manually
         int noOfBack = 5;
         String pid[] = new String[noOfProcesses];
         Double mem[][] = new Double[noOfProcesses][noOfBack];
