@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -32,6 +33,11 @@ public class Optimize {
         }
 
         int cnt = 0;
+        // cnt2 tracks if all the to be killed processes have been
+        // approved by admin and if yes kill them.
+        // A single not killed process from the list would stop the
+        // killing of any processes. To be implemented later.
+        int cnt2 = 0;
         FileReader fr = new FileReader("E:\\Synom\\Synom\\Data_Sets\\toBeKilled.txt");
         Scanner sc = new Scanner(fr);
         // get PIDs from file
@@ -64,28 +70,16 @@ public class Optimize {
                 // 0 = true
                 // 1 = false
                 if (n == 0) {
-                    String line;
-                    Process kill = Runtime.getRuntime().exec("taskkill /F /PID " + toBeKilled[i]);
-                    BufferedReader stdInput = new BufferedReader(new InputStreamReader(kill.getInputStream()));
-
-                    BufferedReader stdError = new BufferedReader(new InputStreamReader(kill.getErrorStream()));
-                    // s is cmd's output of the command
-                    String s = null;
-                    while ((s = stdInput.readLine()) != null) {
-                        JOptionPane.showMessageDialog(GraphicalUI.okLabel,
-                                s,
-                                "Process killed",
-                                JOptionPane.INFORMATION_MESSAGE);
-                    }
-
-                    while ((s = stdError.readLine()) != null) {
-                        JOptionPane.showMessageDialog(GraphicalUI.okLabel,
-                                s,
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                    stdInput.close();
+                    cnt2++;
                 }
+            }
+            if (cnt2 == cnt) {
+                String ready = "true";
+                // write to boolean.txt true or false
+                // if it is true then the client would kill the processes
+            PrintWriter out = new PrintWriter("E:\\Synom\\Synom\\Data_Sets\\boolean.txt");
+            out.println(ready);
+                out.close();
             }
         }
     }
