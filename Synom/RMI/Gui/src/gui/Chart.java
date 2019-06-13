@@ -44,7 +44,7 @@ public class Chart extends ApplicationFrame implements ActionListener {
         final JPanel content = new JPanel(new BorderLayout());
         content.add(chartPanel);
         content.add(button, BorderLayout.SOUTH);
-        chartPanel.setPreferredSize(new java.awt.Dimension(400, 333));
+        chartPanel.setPreferredSize(new java.awt.Dimension(600, 400));
         setContentPane(content);
 
     }
@@ -81,7 +81,7 @@ public class Chart extends ApplicationFrame implements ActionListener {
             }
             StringBuilder text = null;
             if(gui.GraphicalUI.label2b.getText().toString().equals("label2b")==true){
-                text = new StringBuilder(gui.GraphicalUI.label1b.getText().toString());
+                text = new StringBuilder("1.0%");
             }else{
                 text = new StringBuilder(gui.GraphicalUI.label2b.getText().toString());
             }
@@ -95,7 +95,7 @@ public class Chart extends ApplicationFrame implements ActionListener {
             }
             StringBuilder text = null;          
              if(gui.GraphicalUI.label2b.getText().toString().equals("label2b")==true){
-                text = new StringBuilder(gui.GraphicalUI.label1c.getText().toString());
+                text = new StringBuilder("1.0 MB");
             }else{
                 text = new StringBuilder(gui.GraphicalUI.label2c.getText().toString());
             }
