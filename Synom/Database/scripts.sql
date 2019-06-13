@@ -1,3 +1,5 @@
+SET GLOBAL time_zone = '+2:00';
+
 truncate table resources_shadowfax;
 truncate table resources_lightfax;
 

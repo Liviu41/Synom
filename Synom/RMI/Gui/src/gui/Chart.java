@@ -79,7 +79,12 @@ public class Chart extends ApplicationFrame implements ActionListener {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Chart.class.getName()).log(Level.SEVERE, null, ex);
             }
-            StringBuilder text = new StringBuilder(gui.GraphicalUI.label1b.getText().toString());
+            StringBuilder text = null;
+            if(gui.GraphicalUI.label2b.getText().toString().equals("label2b")==true){
+                text = new StringBuilder(gui.GraphicalUI.label1b.getText().toString());
+            }else{
+                text = new StringBuilder(gui.GraphicalUI.label2b.getText().toString());
+            }
             text.deleteCharAt(text.lastIndexOf("%"));
             this.lastValue = Double.parseDouble(text.toString());
         } else if (this.type.equals("ram")) {
@@ -88,7 +93,12 @@ public class Chart extends ApplicationFrame implements ActionListener {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Chart.class.getName()).log(Level.SEVERE, null, ex);
             }
-            StringBuilder text = new StringBuilder(gui.GraphicalUI.label1c.getText().toString());
+            StringBuilder text = null;          
+             if(gui.GraphicalUI.label2b.getText().toString().equals("label2b")==true){
+                text = new StringBuilder(gui.GraphicalUI.label1c.getText().toString());
+            }else{
+                text = new StringBuilder(gui.GraphicalUI.label2c.getText().toString());
+            }
             text.deleteCharAt(text.lastIndexOf("B"));
             text.deleteCharAt(text.lastIndexOf("M"));
             this.lastValue = Double.parseDouble(text.toString());

@@ -16,7 +16,7 @@ public class RMI_ClientModule {
 
         while (true) {
             try {
-                Registry registry = LocateRegistry.getRegistry("192.168.1.167", 1099);
+                Registry registry = LocateRegistry.getRegistry("192.168.1.130", 1099);
                 rmi = (RMI_InterfaceModule) registry.lookup("server");
                 System.out.println("Connected to Server");
             } catch (Exception e) {

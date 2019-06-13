@@ -108,7 +108,7 @@ public class RMI_Methods implements RMI_InterfaceModule {
         int cnt = 0;
         FileReader fr = null;
         try {
-            fr = new FileReader("E:\\Synom\\Synom\\Data_Sets\\toBeKilled.txt");
+            fr = new FileReader("/home/liviu/Synom/Synom/Data_Sets/toBeKilled.txt");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RMI_Methods.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -124,7 +124,7 @@ public class RMI_Methods implements RMI_InterfaceModule {
         FileReader fr2 = null;
         String bool = null;
         try {
-            fr2 = new FileReader("E:\\Synom\\Synom\\Data_Sets\\boolean.txt");
+            fr2 = new FileReader("/home/liviu/Synom/Synom/Data_Sets/boolean.txt");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RMI_Methods.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -156,7 +156,7 @@ public class RMI_Methods implements RMI_InterfaceModule {
         String ready = "false";
         PrintWriter out = null;
         try {
-            out = new PrintWriter("E:\\Synom\\Synom\\Data_Sets\\boolean.txt");
+            out = new PrintWriter("/home/liviu/Synom/Synom/Data_Sets/boolean.txt");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RMI_Methods.class.getName()).log(Level.SEVERE, null, ex);
         }
