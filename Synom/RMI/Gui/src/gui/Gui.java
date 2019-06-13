@@ -42,7 +42,8 @@ public class Gui {
                     s = rs.getString("os_type");
                     s2 = s;
                 }
-                gui.label1a.setText(s2);
+                //gui.label1a.setText(s2);
+                gui.label1a.setText("Offline");
 
                 String query2 = "select cpu_usage from resources_shadowfax order by idresources desc limit 1,1";
                 rs = myStmt.executeQuery(query2);
@@ -61,9 +62,11 @@ public class Gui {
                     }
                 }
                 if (s.equals("Offline") == false) {
-                    gui.label1b.setText(s2 + "%");
+                    //gui.label1b.setText(s2 + "%");
+                    gui.label1b.setText("Offline");
                 } else {
-                    gui.label1b.setText(s2);
+                    //gui.label1b.setText(s2);
+                    gui.label1b.setText("Offline");
                 }
 
                 String query3 = "select ram_usage from resources_shadowfax order by idresources desc limit 1,1";
@@ -83,9 +86,11 @@ public class Gui {
                     }
                 }
                 if (s.equals("Offline") == false) {
-                    gui.label1c.setText(s2 + " MB");
+                    //gui.label1c.setText(s2 + " MB");
+                    gui.label1c.setText("Offline");
                 } else {
-                    gui.label1c.setText(s2);
+                    //gui.label1c.setText(s2);
+                    gui.label1c.setText("Offline");
                 }
 
                 String query4 = "select ram_total from resources_shadowfax order by idresources desc limit 1,1";
@@ -105,9 +110,11 @@ public class Gui {
                     }
                 }
                 if (s.equals("Offline") == false) {
-                    gui.label1d.setText(s2 + " MB");
+                    //gui.label1d.setText(s2 + " MB");
+                    gui.label1d.setText("Offline");
                 } else {
-                    gui.label1d.setText(s2);
+                    //gui.label1d.setText(s2);
+                    gui.label1d.setText("Offline");
                 }
 
                 String query5 = "select storage_total from resources_shadowfax order by idresources desc limit 1,1";
@@ -130,9 +137,11 @@ public class Gui {
                     }
                 }
                 if (s.equals("Offline") == false) {
-                    gui.label1e.setText(s2 + " GB");
+                    //gui.label1e.setText(s2 + " GB");
+                    gui.label1e.setText("Offline");
                 } else {
-                    gui.label1e.setText(s2);
+                    //gui.label1e.setText(s2);
+                    gui.label1e.setText("Offline");
                 }
 
                 String query6 = "select storage_free from resources_shadowfax order by idresources desc limit 1,1";
@@ -155,9 +164,11 @@ public class Gui {
                     }
                 }
                 if (s.equals("Offline") == false) {
-                    gui.label1f.setText(s2 + " GB");
+                    //gui.label1f.setText(s2 + " GB");
+                    gui.label1f.setText("Offline");
                 } else {
-                    gui.label1f.setText(s2);
+                    //gui.label1f.setText(s2);
+                    gui.label1f.setText("Offline");
                 }
 
                 String query7 = "select ip from resources_shadowfax order by idresources desc limit 1,1";
@@ -167,7 +178,8 @@ public class Gui {
                     s = rs.getString("ip");
                     s2 = s;
                 }
-                gui.label1g.setText(s2);
+                //gui.label1g.setText(s2);
+                gui.label1g.setText("Offline");
                 chartCPU.button.doClick();
                 chartRAM.button.doClick();
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -223,8 +235,10 @@ public class Gui {
                 }
                 if (s.equals("Offline") == false) {
                     gui.label2c.setText(s2 + " MB");
+                    System.out.println(gui.label2c.getText());
                 } else {
                     gui.label2c.setText(s2);
+                    System.out.println(gui.label2c.getText());
                 }
 
                 String query11 = "select ram_total from resources_lightfax order by idresources desc limit 1,1";

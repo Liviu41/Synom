@@ -37,11 +37,11 @@ public class Monitor {
         cpuLoad = mbean.getSystemCpuLoad();
         cpuLoadText = cpuLoad * 100;
 
-        memorySize = mbean.getFreePhysicalMemorySize();
-        ramText = memorySize / 1024 / 1024;
-
         totalRAM = mbean.getTotalPhysicalMemorySize();
         totalRAMText = totalRAM / 1024 / 1024;
+        
+        memorySize = totalRAM - mbean.getFreePhysicalMemorySize();
+        ramText = memorySize / 1024 / 1024;
 
         Process process = null;
         String processes = null;
