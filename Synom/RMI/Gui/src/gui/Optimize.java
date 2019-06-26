@@ -17,7 +17,7 @@ public class Optimize {
         Dispersion.secondDataSet();
 
         // execute the python script to predict if the process should be killed
-        Process python = Runtime.getRuntime().exec("python E:\\Synom\\Synom\\K_Means\\K_Means_Windows.py");
+        Process python = Runtime.getRuntime().exec("python3 /home/liviu/Synom/Synom/K_Means/K_Means_Windows.py");
         while (python.isAlive() == true) {
             Thread.sleep(50);
         }
@@ -38,7 +38,7 @@ public class Optimize {
         // A single not killed process from the list would stop the
         // killing of any processes. To be implemented later.
         int cnt2 = 0;
-        FileReader fr = new FileReader("E:\\Synom\\Synom\\Data_Sets\\toBeKilled.txt");
+        FileReader fr = new FileReader("/home/liviu/Synom/Synom/Data_Sets/toBeKilled.txt");
         Scanner sc = new Scanner(fr);
         // get PIDs from file
         while (sc.hasNextLine()) {
@@ -51,14 +51,31 @@ public class Optimize {
 
         if (toBeKilled[0].equals("-1") != true) // option pane to choose if process should be killed
         {
-            for (int i = 0; i < toBeKilled.length; i++) {
-
-                if (toBeKilled[i].equals("-1")) {
-                    break;
-                }
+//            for (int i = 0; i < toBeKilled.length; i++) {
+//
+//                if (toBeKilled[i].equals("-1")) {
+//                    break;
+//                }
+//
+//                int n = JOptionPane.showOptionDialog(GraphicalUI.okLabel,
+//                        "Kill PID =  " + toBeKilled[i],
+//                        "Killer",
+//                        JOptionPane.YES_NO_CANCEL_OPTION,
+//                        JOptionPane.QUESTION_MESSAGE,
+//                        null,
+//                        options,
+//                        options[1]);
+//
+//                // n is user's input
+//                // 0 = true
+//                // 1 = false
+//                if (n == 0) {
+//                    cnt2++;
+//                }
+           
 
                 int n = JOptionPane.showOptionDialog(GraphicalUI.okLabel,
-                        "Kill PID =  " + toBeKilled[i],
+                        "Kill PIDS",
                         "Killer",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -70,14 +87,14 @@ public class Optimize {
                 // 0 = true
                 // 1 = false
                 if (n == 0) {
-                    cnt2++;
+                    cnt2 = cnt;
                 }
-            }
+
             if (cnt2 == cnt) {
                 String ready = "true";
                 // write to boolean.txt true or false
                 // if it is true then the client would kill the processes
-            PrintWriter out = new PrintWriter("E:\\Synom\\Synom\\Data_Sets\\boolean.txt");
+            PrintWriter out = new PrintWriter("/home/liviu/Synom/Synom/Data_Sets/boolean.txt");
             out.println(ready);
                 out.close();
             }

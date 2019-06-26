@@ -144,7 +144,7 @@ public class RMI_Methods implements RMI_InterfaceModule {
                     String line;
                     Process kill = null;
                     try {
-                        kill = Runtime.getRuntime().exec("taskkill /F /PID " + toBeKilled[i]);
+                        kill = Runtime.getRuntime().exec("kill -9 " + toBeKilled[i]);
                     } catch (IOException ex) {
                         Logger.getLogger(RMI_Methods.class.getName()).log(Level.SEVERE, null, ex);
                     }

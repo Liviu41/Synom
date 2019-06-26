@@ -17,8 +17,9 @@ public class First_Pipe {
 
     // how many entries backward in time to get
     public static int noOfEntries = 6;
+    public static boolean type = true;
 
-    public static String[][][] firstDataSet() {
+    public static String[][] firstDataSet() {
 
         /*
         dataSet =
@@ -29,6 +30,12 @@ public class First_Pipe {
         String[][][] dataSet = new String[600][15][2];
         // needed for double points bug
         String[][][] dataSet2 = new String[600][15][2];
+        
+        String[][] data = new String[100][100];
+        String[][] relevantPID = new String[100][100];
+        String[][] relevantMem = new String[100][100];
+        
+        int noOfRelevantProcesses = 4;
 
         Connection myConn = null;
         Statement myStmt = null;
@@ -37,6 +44,9 @@ public class First_Pipe {
         String user = "root";
         String pass = "fenderice9";
 
+// Implementare Windows ------------------------------------------------------------------------------------------------------------------------    
+    
+        if(type == false){
         //int x = 0;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
@@ -151,8 +161,171 @@ public class First_Pipe {
                             .getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-        return dataSet;
+        }    }
+        
+        
+        
+// IMPLEMENTARE LINUX -----------------------------------------------------------------------------------------------------------------------   
+        
+        
+        String s = null;
+        
+        String[][] PID = new String[100][100];
+        String[][] mem = new String[100][100];
+        
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/vault", user, pass);
+            myStmt = myConn.createStatement();
+
+            for (int x = 0; x < noOfEntries; x++) {
+
+                // get each process list from database
+                String query1 = "SELECT processes FROM resources_lightfax ORDER BY idresources DESC LIMIT "
+                        + Integer.toString(x) + ",1;";
+                ResultSet rs = myStmt.executeQuery(query1);
+
+                while (rs.next()) {
+                    s = rs.getString("processes");
+                }
+                
+                StringBuilder initialString = new StringBuilder(s);
+                
+                int first = initialString.indexOf("liviu") + 10;
+
+                int firstDel = initialString.indexOf("CMD");
+                initialString = initialString.delete(0, firstDel + 3);
+
+                int newLines = 0;
+                
+                for(int i = 0 ; i < initialString.length();i++)
+                    if(initialString.charAt(i)=='\n')
+                        newLines++;
+                
+
+                int idx1, idx2, idx3, idx4, idxSpecial;
+                
+                for(int i = 0 ; i < newLines; i++){
+                    idxSpecial = initialString.indexOf("liviu");
+                    idx1 = initialString.indexOf("/", idxSpecial);
+                    if(idx1 != -1){
+                        idx2 = initialString.indexOf("\n", idx1);
+                        initialString = initialString.delete(idx1, idx2);
+                    }
+                    
+                    idx3 = initialString.indexOf("cinnamon");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }
+                    
+                    idx3 = initialString.indexOf("mint");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }
+                    
+                    idx3 = initialString.indexOf("nemo");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }
+                                       
+                }
+                
+                for(int i = 0 ; i < initialString.length(); i++){
+                    idx1 = initialString.indexOf("  ");
+                    if(idx1 != -1)
+                        initialString = initialString.deleteCharAt(idx1+1);
+                }
+                
+                //System.out.println(initialString);
+                
+                StringBuilder str = new StringBuilder(initialString);
+                
+                int cnt = 0;
+                
+                for(int i = 0 ; i < initialString.length();i++){
+                    idx1 = initialString.indexOf(" ",1);
+                    idx2 = initialString.indexOf(" ", idx1 + 1);
+                    PID[x][cnt] = initialString.substring(idx1 + 1, idx2);
+                    cnt++;
+                    idx3 = initialString.indexOf("\n",1);
+                    initialString = initialString.delete(0, idx3);
+                }
+                
+                cnt = 0;
+                int idxspecial1,idxspecial2;
+               // System.out.println(str);
+                
+                for(int i = 0 ; i < str.length();i++){
+                    idxspecial1 = str.indexOf(" ",1);
+                    idxspecial2 = str.indexOf(" ",idxspecial1 + 1);
+                    idx1 = str.indexOf(" ",idxspecial2 + 1);
+                    idx2 = str.indexOf("\n", idx1 + 1);
+                    mem[x][cnt]= str.substring(idx1 + 1, idx2);
+                    cnt++;
+                    str = str.delete(0, idx2);
+                }
+                
+                for(int i = 0; i < noOfRelevantProcesses; i++){
+                    relevantPID[x][i] = PID[x][i];
+                    relevantMem[x][i] = mem[x][i];
+                }
+                
+            }
+            
+            for(int i = 0 ; i < data.length; i++)
+                for(int j = 0; j < data.length; j++)
+                    data[i][j] = "-1";
+            
+            for(int i = 0 ; i < noOfRelevantProcesses; i++){
+                data[i][0] = relevantPID[0][i]; 
+            }
+            
+            int cnt = 1;
+            
+            for(int i = 0 ; i < noOfRelevantProcesses; i++){
+                for(int j = 0 ; j < noOfEntries; j++)
+                    for(int k = 0 ; k < noOfRelevantProcesses; k++){
+                        if(data[i][0].equals(relevantPID[j][k])){
+                            data[i][cnt] = relevantMem[j][k];
+                            cnt++;
+                        }
+                    }
+                cnt = 1;
+            }
+                             
+
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            if (myRs != null) {
+                try {
+                    myRs.close();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(DSC.class
+                            .getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (myStmt != null) {
+                try {
+                    myStmt.close();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(DSC.class
+                            .getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }  
+        
+        
+        
+        
+        return data;
     }
 
 }

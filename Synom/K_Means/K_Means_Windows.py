@@ -1,7 +1,7 @@
 import numpy as np 
 from sklearn.cluster import KMeans
 
-f= open("E:\Synom\Synom\Data_Sets\DataSet_Artificial_Windows.txt","r")
+f= open("/home/liviu/Synom/Synom/Data_Sets/DataSet_Artificial_Windows.txt","r")
 
 dataSet = f.read()
 f.close()
@@ -43,7 +43,7 @@ kmeans.fit(dispersions)
 
 
 
-f= open("E:\\Synom\\Synom\\Data_Sets\\toBeClustered.txt","r")
+f= open("/home/liviu/Synom/Synom/Data_Sets/toBeClustered.txt","r")
 
 toBeClustered = f.read()
 f.close()
@@ -105,6 +105,8 @@ for i in range(0, len(predict)):
        arr[cnt] = i
        cnt = cnt + 1
       
+print(predict)
+        
 numberOfOcc = arr.count('')
 
 for i in range(numberOfOcc):
@@ -119,7 +121,7 @@ for i in range(0, len(arr)):
 
 print(toBeKilled)
 
-g = open("E:\\Synom\\Synom\\Data_Sets\\toBeKilled.txt","w+")
+g = open("/home/liviu/Synom/Synom/Data_Sets/toBeKilled.txt","w+")
 g.write(toBeKilled)
 g.close()
        

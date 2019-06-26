@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 public class DSC {
 
     public static void main(String[] args) throws FileNotFoundException {
+        First_Pipe.firstDataSet();
         Dispersion.secondDataSet();
     }
 
