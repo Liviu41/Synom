@@ -45,10 +45,23 @@ public class Optimize {
             toBeKilled[cnt] = sc.nextLine();
             cnt++;
         }
+        
+        StringBuilder tbk = new StringBuilder();
+        
+        for(int i = 0; i < cnt; i++){
+            StringBuilder cop = new StringBuilder(toBeKilled[i]);
+            tbk = tbk.append(cop + ",");
+        }
+        tbk.deleteCharAt(tbk.length()-1);
+        tbk.append("?");
+        
+        System.out.println("AAAAAAAAA");
+        System.out.println(tbk);
+        System.out.println("AAAAAAAAA");
 
         Object[] options = {"Yes",
             "No"};
-
+        
         if (toBeKilled[0].equals("-1") != true) // option pane to choose if process should be killed
         {
 //            for (int i = 0; i < toBeKilled.length; i++) {
@@ -73,9 +86,9 @@ public class Optimize {
 //                    cnt2++;
 //                }
            
-
+                    
                 int n = JOptionPane.showOptionDialog(GraphicalUI.okLabel,
-                        "Kill PIDS",
+                        "Kill PIDS: " + tbk,
                         "Killer",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,

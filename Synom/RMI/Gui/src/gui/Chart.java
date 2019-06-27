@@ -29,6 +29,8 @@ public class Chart extends ApplicationFrame implements ActionListener {
     final TimeSeriesCollection dataset = new TimeSeriesCollection(this.series);
     public final JButton button = new JButton();
     String type;
+    private boolean typ1 = false;
+    private boolean typ2 = false;
 
     public Chart(final String title, String Type) {
 
@@ -75,7 +77,12 @@ public class Chart extends ApplicationFrame implements ActionListener {
     public void actionPerformed(final ActionEvent e) {
         if (this.type.equals("cpu")) {
             try {
-                Thread.sleep(1000);
+                if(typ1 == false){
+                    Thread.sleep(100);
+                    typ1 = true;
+                }
+                else
+                Thread.sleep(5000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Chart.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -89,7 +96,12 @@ public class Chart extends ApplicationFrame implements ActionListener {
             this.lastValue = Double.parseDouble(text.toString());
         } else if (this.type.equals("ram")) {
             try {
-                Thread.sleep(1000);
+                if(typ2 == false){
+                    Thread.sleep(100);
+                    typ2 = true;
+                }
+                else
+                Thread.sleep(5000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Chart.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -190,6 +190,30 @@ public class First_Pipe {
                 
                 StringBuilder initialString = new StringBuilder(s);
                 
+                int net1 = initialString.indexOf("/usr/lib/jvm/jdk1.8.0_211/bin/java");
+                int net2 = initialString.indexOf("\n", net1);
+                initialString.delete(net1, net2);
+                
+                for(int i = 0 ; i < 100; i++){
+                    if(initialString.charAt(net1 - i) == 'l'){
+                        initialString.deleteCharAt(net1 - i);
+                        break;}
+                    else 
+                        initialString.deleteCharAt(net1 - i);
+                }
+
+                net1 = initialString.indexOf("/usr/sbin/mysqld --daemonize --pid-file=/run/mysqld/mysqld.pid");
+                net2 = initialString.indexOf("\n", net1);
+                initialString.delete(net1, net2);
+                
+                for(int i = 0 ; i < 100; i++){
+                    if(initialString.charAt(net1 - i) == 'l'){
+                        initialString.deleteCharAt(net1 - i);
+                        break;}
+                    else 
+                        initialString.deleteCharAt(net1 - i);
+                }
+                
                 int first = initialString.indexOf("liviu") + 10;
 
                 int firstDel = initialString.indexOf("CMD");
@@ -201,7 +225,7 @@ public class First_Pipe {
                     if(initialString.charAt(i)=='\n')
                         newLines++;
                 
-
+               
                 int idx1, idx2, idx3, idx4, idxSpecial;
                 
                 for(int i = 0 ; i < newLines; i++){
@@ -232,7 +256,62 @@ public class First_Pipe {
                         initialString = initialString.delete(idx3, idx4);
                         i++;
                     }
-                                       
+                    
+                    idx3 = initialString.indexOf("/usr/sbin");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }
+                    
+                    idx3 = initialString.indexOf("python2");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }
+                    
+                    idx3 = initialString.indexOf("nm-applet");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }
+                    
+                    idx3 = initialString.indexOf("gnome");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }     
+                    
+                    idx3 = initialString.indexOf("/usr/bin/python3");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    } 
+                    
+                    idx3 = initialString.indexOf("cinnamon-session");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }  
+                    
+                    idx3 = initialString.indexOf("/usr/lib/x86_64-linux-gnu/");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    }  
+                    
+                    idx3 = initialString.indexOf("/usr/lib/");
+                    if(idx3 != -1){
+                        idx4 = initialString.indexOf( "\n", idx3);
+                        initialString = initialString.delete(idx3, idx4);
+                        i++;
+                    } 
                 }
                 
                 for(int i = 0 ; i < initialString.length(); i++){
@@ -241,7 +320,7 @@ public class First_Pipe {
                         initialString = initialString.deleteCharAt(idx1+1);
                 }
                 
-                //System.out.println(initialString);
+                System.out.println(initialString);
                 
                 StringBuilder str = new StringBuilder(initialString);
                 
@@ -323,7 +402,7 @@ public class First_Pipe {
         }  
         
         
-        
+
         
         return data;
     }
